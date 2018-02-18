@@ -50,7 +50,7 @@ VERSION:
 EOF
 }
 
-function docker_debootstrap()
+function docker_bootstrap()
 {
     # variables
     image="/tmp/image-${distname}-${arch}"
@@ -66,7 +66,8 @@ function docker_debootstrap()
              man-db,\
              manpages"
 
-    echo "-- debootstrap ${distname}" 1>&3
+
+    echo '-- bootstrap' 1>&3
 
     if [ "$(id -u)" -ne 0 ]
     then
@@ -88,6 +89,7 @@ function docker_debootstrap()
         echo "2.) ln -s sid /usr/share/debootstrap/scripts/${distname}" 1>&3
         exit 1
     else
+        echo " * debootstrap ${image}" 1>&3
         ${sudo} debootstrap \
                 --arch="${arch}" \
                 --include="${include}" \
@@ -98,7 +100,8 @@ function docker_debootstrap()
                 "${mirror}"
         if [ ${?} -ne 0 ]
         then
-            echo "Issue with debootstrap, please run again with -v." 1>&3
+            echo "There is an issue Issue with debootstrap." 1>&3
+            echo "Please run again with -v." 1>&3
             exit 1
         fi
     fi
@@ -429,7 +432,7 @@ else
     exec 3>&1
 fi
 
-docker_debootstrap
+docker_bootstrap
 docker_import
 
 if [ -n "${push}" ]
