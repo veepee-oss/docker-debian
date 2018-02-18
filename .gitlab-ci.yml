@@ -22,23 +22,23 @@ shellcheck:
     - shellcheck build.sh
 
 # build
-build-jessie:
-  stage: docker
-  image: vpgrp/debian:jessie
-  before_script:
-    - apt-get update  -qq -y
-    - apt-get install -qq -y debootstrap sudo
-    - apt-get install -qq -y debian-keyring debian-archive-keyring
-  script:
-    - ./build.sh -d jessie -u vpgrp
+# build-jessie:
+#   stage: docker
+#   image: vpgrp/debian:jessie
+#   before_script:
+#     - apt-get update  -qq -y
+#     - apt-get install -qq -y debootstrap sudo
+#     - apt-get install -qq -y debian-keyring debian-archive-keyring
+#   script:
+#     - ./build.sh -d jessie -u vpgrp
 
-build-stretch:
-  stage: docker
-  image: vpgrp/debian:stretch
-  before_script:
-    - apt-get update  -qq -y
-    - apt-get install -qq -y debootstrap sudo
-    - apt-get install -qq -y debian-keyring debian-archive-keyring
-  script:
-    - ./build.sh -d stretch -u vpgrp
+# build-stretch:
+#   stage: docker
+#   image: vpgrp/debian:stretch
+#   before_script:
+#     - apt-get update  -qq -y
+#     - apt-get install -qq -y debootstrap sudo
+#     - apt-get install -qq -y debian-keyring debian-archive-keyring
+#   script:
+#     - ./build.sh -d stretch -u vpgrp
 # EOF
