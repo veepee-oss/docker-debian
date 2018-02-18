@@ -269,7 +269,7 @@ function docker_import()
         then
             docker tag "${user}/debian:${distname}" "${user}/debian:${import}"
             docker run "${user}/debian:${import}" \
-                   echo "Successfully build ${user}/debian:${import}" 1>&3
+                   echo " * build ${user}/debian:${import}" 1>&3
         fi
     done
 }
