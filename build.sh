@@ -258,10 +258,10 @@ function docker_import()
     echo "-- docker import debian:${distname} (from ${image}.tar)" 1>&3
     docker import "${image}.tar" "${user}/debian:${distname}"
     docker run "${user}/debian:${distname}" \
-           echo "Successfully build ${user}/debian:${distname}" 1>&3
+           echo " * build ${user}/debian:${distname}" 1>&3
     docker tag "${user}/debian:${distname}" "${user}/debian:${distid}"
     docker run "${user}/debian:${distid}" \
-           echo "Successfully build ${user}/debian:${distid}" 1>&3
+           echo " * build ${user}/debian:${distid}" 1>&3
 
     for import in latest oldstable stable testing
     do
