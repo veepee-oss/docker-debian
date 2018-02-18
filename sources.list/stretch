@@ -1,0 +1,8 @@
+# deb http://ftp.debian.org/debian stretch main contrib non-free
+# deb http://ftp.debian.org/debian stretch-updates main contrib non-free
+# deb http://ftp.debian.org/debian stretch-backports main contrib non-free
+# deb http://security.debian.org stretch/updates main contrib non-free
+deb http://mirror.vpgrp.io/debian stretch main contrib non-free
+deb http://mirror.vpgrp.io/debian stretch-updates main contrib non-free
+deb http://mirror.vpgrp.io/debian stretch-backports main contrib non-free
+deb http://mirror.vpgrp.io/debian-security stretch/updates main contrib non-free

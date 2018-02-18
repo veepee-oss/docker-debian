@@ -1,0 +1,8 @@
+# deb http://ftp.debian.org/debian wheezy main contrib non-free
+# deb http://ftp.debian.org/debian wheezy-updates main contrib non-free
+# deb http://ftp.debian.org/debian wheezy-backports main contrib non-free
+# deb http://security.debian.org wheezy/updates main contrib non-free
+deb http://mirror.vpgrp.io/debian wheezy main contrib non-free
+deb http://mirror.vpgrp.io/debian wheezy-updates main contrib non-free
+deb http://mirror.vpgrp.io/debian wheezy-backports main contrib non-free
+deb http://mirror.vpgrp.io/debian-security wheezy/updates main contrib non-free
