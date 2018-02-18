@@ -280,8 +280,8 @@ function docker_push()
     echo "-- docker push" 1>&3
     echo " * push ${user}/debian:${distname}" 1>&3
     docker push "${user}/debian:${distname}"
-    echo " * push ${user}/debian:${distid}"
-    docker push "${user}/debian:${distid}" 1>&3
+    echo " * push ${user}/debian:${distid}" 1>&3
+    docker push "${user}/debian:${distid}"
 
     for push in latest oldstable stable testing
     do
