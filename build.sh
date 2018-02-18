@@ -258,7 +258,7 @@ EOF
 # create images from bootstrap archive
 function docker_import()
 {
-    echo "-- docker import from ${image}.tar" 1>&3
+    echo "-- docker import from ${image}" 1>&3
     docker import "${image}.tar" "${user}/debian:${distname}"
     docker run "${user}/debian:${distname}" \
            echo " * build ${user}/debian:${distname}" 1>&3
