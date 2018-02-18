@@ -255,7 +255,7 @@ EOF
 # create images from bootstrap archive
 function docker_import()
 {
-    echo "-- docker import debian:${distname} (from ${image}.tar)" 1>&3
+    echo "-- docker import from ${image}.tar" 1>&3
     docker import "${image}.tar" "${user}/debian:${distname}"
     docker run "${user}/debian:${distname}" \
            echo " * build ${user}/debian:${distname}" 1>&3
@@ -277,16 +277,17 @@ function docker_import()
 # push image to docker hub
 function docker_push()
 {
-    echo "-- docker push debian:${distname}" 1>&3
+    echo "-- docker push" 1>&3
+    echo " * push ${user}/debian:${distname}" 1>&3
     docker push "${user}/debian:${distname}"
-    echo "-- docker push debian:${distid}"
+    echo " * push ${user}/debian:${distid}"
     docker push "${user}/debian:${distid}" 1>&3
 
     for push in latest oldstable stable testing
     do
         if [ "${distname}" = "${!push}"  ]
         then
-            echo "-- docker push ${push}" 1>&3
+            echo " * push ${user}/debian:${push}" 1>&3
             docker push "${user}/debian:${push}"
         fi
     done
