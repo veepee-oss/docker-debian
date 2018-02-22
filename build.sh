@@ -56,7 +56,8 @@ function docker_bootstrap()
     image="/tmp/image-${distname}-${arch}"
     include="${include},\
              apt-transport-https,\
-             apt-utils,ca-certificates,\
+             apt-utils,\
+             ca-certificates,\
              curl,\
              git,\
              locales"
@@ -65,7 +66,6 @@ function docker_bootstrap()
              info,\
              man-db,\
              manpages"
-
 
     echo '-- bootstrap' 1>&3
 
