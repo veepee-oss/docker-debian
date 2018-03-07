@@ -142,7 +142,9 @@ EOF
         echo ' * /etc/apt/apt.conf.d/ignore-release-date' 1>&3
         cat <<EOF | \
             ${sudo} tee "${image}/etc/apt/apt.conf.d/ignore-release-date"
+Acquire::AllowInsecureRepositories "true";
 Acquire::Check-Valid-Until "false";
+APT::Get::AllowUnauthenticated "true";
 EOF
 
     else
