@@ -4,6 +4,15 @@
 [![pipeline][pipeline-img]][pipeline-href]
 [![docker][docker-img]][docker-href]
 
+1. [Overview](#overview)
+2. [Description](#description)
+3. [Tags](#tags)
+4. [Setup](#setup)
+5. [Usage](#usage)
+6. [Limitations](#limitations)
+7. [Development](#development)
+8. [Miscellaneous](#miscellaneous)
+
 ## Overview
 
 Debian is a  free operating system (OS) for your  computer. An operating system
@@ -29,7 +38,7 @@ Supported tags.
 - 9, stretch, stable, latest
 - 10, buster, sid
 
-## Requirements
+## Setup
 
 On Debian you need sudo permissions and the following packages:
 
