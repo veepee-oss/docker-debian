@@ -1,4 +1,5 @@
 # docker-debian
+
 [![License][license-img]][license-href]
 [![pipeline][pipeline-img]][pipeline-href]
 [![docker][docker-img]][docker-href]
@@ -8,7 +9,7 @@
 Debian is a  free operating system (OS) for your  computer. An operating system
 is the set of basic programs and utilities that make your computer run.
 
-[debian.org](https://www.debian.org/)
+[debian.org][overview-href]
 
 ## Description
 
@@ -108,9 +109,10 @@ request.
 ```
 
 [license-img]: https://img.shields.io/badge/license-Apache-blue.svg
-[license-href]: /LICENSE
+[license-href]: LICENSE
 [pipeline-img]: https://git.vpgrp.io/docker/docker-debian/badges/master/pipeline.svg
 [pipeline-href]: https://git.vpgrp.io/docker/docker-debian/commits/master
 [docker-img]: https://img.shields.io/docker/pulls/vpgrp/debian.svg
 [docker-href]: https://registry.hub.docker.com/u/vpgrp/debian
-[contribute-href]: /CONTRIBUTING.md
+[overview-href]: https://www.debian.org/
+[contribute-href]: CONTRIBUTING.md
