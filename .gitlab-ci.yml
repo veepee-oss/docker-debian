@@ -20,6 +20,7 @@ lines-length:
     - >
       bash <(curl --fail --location --silent --show-error
       https://git.io/vxIxN)
+      *.list
 
 # syntax
 shellcheck:
