@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1039
 # shellcheck disable=SC2034
+# shellcheck disable=SC2181
 
 set -e
 

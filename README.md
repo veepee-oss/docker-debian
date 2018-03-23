@@ -1,7 +1,6 @@
 # docker-debian
 
 [![License][license-img]][license-href]
-[![pipeline][pipeline-img]][pipeline-href]
 [![docker][docker-img]][docker-href]
 
 1. [Overview](#overview)
@@ -119,8 +118,6 @@ request.
 
 [license-img]: https://img.shields.io/badge/license-Apache-blue.svg
 [license-href]: LICENSE
-[pipeline-img]: https://git.vpgrp.io/docker/docker-debian/badges/master/pipeline.svg
-[pipeline-href]: https://git.vpgrp.io/docker/docker-debian/commits/master
 [docker-img]: https://img.shields.io/docker/pulls/vpgrp/debian.svg
 [docker-href]: https://registry.hub.docker.com/u/vpgrp/debian
 [overview-href]: https://www.debian.org/
