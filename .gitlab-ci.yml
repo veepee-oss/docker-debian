@@ -28,4 +28,18 @@ shellcheck:
   image: vpgrp/linter:shell
   script:
     - shellcheck build.sh
+
+docker-push:
+  tags:
+    - docker
+  stage: deploy
+  script:
+    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
+    - ./build.sh -d wheezy -u vpgrp -p
+    - ./build.sh -d jessie -u vpgrp -p
+    - ./build.sh -d stretch -u vpgrp -p
+    - ./build.sh -d buster -u vpgrp -p
+  only:
+    - master
+  when: manual
 # EOF
