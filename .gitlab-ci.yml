@@ -31,11 +31,10 @@ shellcheck:
 
 docker-push:
   stage: docker
-  image: docker:latest
-  services:
-    - docker:dind
+  image: vpgrp/kitchen
+#  services:
+#    - docker:dind
   script:
-    - apk add bash
     - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
     - ./build.sh -d wheezy -u vpgrp -p
     - ./build.sh -d jessie -u vpgrp -p
