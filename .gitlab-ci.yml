@@ -32,7 +32,7 @@ shellcheck:
 docker-push:
   tags:
     - docker
-  stage: deploy
+  stage: docker
   script:
     - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
     - ./build.sh -d wheezy -u vpgrp -p
