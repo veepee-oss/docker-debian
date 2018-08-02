@@ -30,9 +30,10 @@ shellcheck:
     - shellcheck build.sh
 
 docker-push:
-  tags:
-    - docker
   stage: docker
+  image: docker:latest
+  services:
+    - docker:dind
   script:
     - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
     - ./build.sh -d wheezy -u vpgrp -p
