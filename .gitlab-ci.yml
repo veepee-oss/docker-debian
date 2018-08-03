@@ -29,15 +29,30 @@ shellcheck:
   script:
     - shellcheck build.sh
 
-docker-push:
+# https://hub.docker.com/u/vpgrp/
+push-on-vpgrp:
   stage: docker
   image: vpgrp/kitchen
   script:
     - apt-get update && apt-get install -y debootstrap
     - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
-    - ./build.sh -d wheezy -u vpgrp -p
-    - ./build.sh -d jessie -u vpgrp -p
+    - ./build.sh -d wheezy  -u vpgrp -p
+    - ./build.sh -d jessie  -u vpgrp -p
     - ./build.sh -d stretch -u vpgrp -p
+  only:
+    - master
+  when: manual
+
+# https://hub.docker.com/u/vptech/
+push-on-vptech:
+  stage: docker
+  image: vpgrp/kitchen
+  script:
+    - apt-get update && apt-get install -y debootstrap
+    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
+    - ./build.sh -d wheezy  -u vptech -p
+    - ./build.sh -d jessie  -u vptech -p
+    - ./build.sh -d stretch -u vptech -p
   only:
     - master
   when: manual
