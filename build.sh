@@ -33,7 +33,7 @@ OPTIONS:
                         default: Europe/Amsterdam
 
    -u, --user           Docker Hub username or organisation
-                        default: $USER
+                        default: none
 
    -p, --push           Docker Hub push
                         default: no
@@ -262,20 +262,20 @@ EOF
 function docker_import()
 {
     echo "-- docker import from ${image}" 1>&3
-    docker import "${image}.tar" "${user}/debian:${distname}"
-    docker run "${user}/debian:${distname}" \
-           echo " * build ${user}/debian:${distname}" 1>&3
-    docker tag "${user}/debian:${distname}" "${user}/debian:${distid}"
-    docker run "${user}/debian:${distid}" \
-           echo " * build ${user}/debian:${distid}" 1>&3
+    docker import "${image}.tar" "${user}debian:${distname}"
+    docker run "${user}debian:${distname}" \
+           echo " * build ${user}debian:${distname}" 1>&3
+    docker tag "${user}debian:${distname}" "${user}debian:${distid}"
+    docker run "${user}debian:${distid}" \
+           echo " * build ${user}debian:${distid}" 1>&3
 
     for import in latest oldstable stable testing
     do
         if [ "${distname}" = "${!import}" ]
         then
-            docker tag "${user}/debian:${distname}" "${user}/debian:${import}"
-            docker run "${user}/debian:${import}" \
-                   echo " * build ${user}/debian:${import}" 1>&3
+            docker tag "${user}debian:${distname}" "${user}debian:${import}"
+            docker run "${user}debian:${import}" \
+                   echo " * build ${user}debian:${import}" 1>&3
         fi
     done
 }
@@ -284,17 +284,17 @@ function docker_import()
 function docker_push()
 {
     echo "-- docker push" 1>&3
-    echo " * push ${user}/debian:${distname}" 1>&3
-    docker push "${user}/debian:${distname}"
-    echo " * push ${user}/debian:${distid}" 1>&3
-    docker push "${user}/debian:${distid}"
+    echo " * push ${user}debian:${distname}" 1>&3
+    docker push "${user}debian:${distname}"
+    echo " * push ${user}debian:${distid}" 1>&3
+    docker push "${user}debian:${distid}"
 
     for push in latest oldstable stable testing
     do
         if [ "${distname}" = "${!push}"  ]
         then
-            echo " * push ${user}/debian:${push}" 1>&3
-            docker push "${user}/debian:${push}"
+            echo " * push ${user}debian:${push}" 1>&3
+            docker push "${user}debian:${push}"
         fi
     done
 }
@@ -317,7 +317,7 @@ do
             ;;
         u)
             # -u / --user
-            user=${OPTARG}
+            user="${OPTARG}/"
             ;;
         p)
             # -p / --push
@@ -416,7 +416,7 @@ fi
 # -u / --user
 if [ -z "${user}" ]
 then
-    user=${USER}
+    user=''
 fi
 
 # -l / --latest

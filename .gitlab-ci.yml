@@ -1,10 +1,22 @@
 ---
 # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 
+.template: &dind
+  image: docker:latest
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - image
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay
+
 stages:
   - commit
   - syntax
-  - docker
+  - build
+  - push
 
 # commit
 git-history:
@@ -29,31 +41,71 @@ shellcheck:
   script:
     - shellcheck build.sh
 
-# https://hub.docker.com/u/vpgrp/
-push-on-vpgrp:
-  stage: docker
-  image: vpgrp/kitchen
+# build
+wheezy:
+  <<: *dind
+  stage: build
   script:
-    - apt-get update && apt-get install -y debootstrap
-    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
-    - ./build.sh -d wheezy  -u vpgrp -p
-    - ./build.sh -d jessie  -u vpgrp -p
-    - ./build.sh -d stretch -u vpgrp -p
+    - mkdir image
+    - ./build.sh -d wheezy
+    - docker save debian:wheezy > image/wheezy.tar
+
+jessie:
+  <<: *dind
+  stage: build
+  script:
+    - mkdir image
+    - ./build.sh -d jessie
+    - docker save debian:jessie > image/jessie.tar
+
+stretch:
+  <<: *dind
+  stage: build
+  script:
+    - mkdir image
+    - ./build.sh -d stretch
+    - docker save debian:stretch > image/stretch.tar
+
+# push
+# https://hub.docker.com/u/vpgrp/
+vpgrp:
+  <<: *dind
+  stage: deploy
   only:
     - master
-  when: manual
+  before_script:
+    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
+    - docker load -i image/wheezy.tar
+    - docker load -i image/jessie.tar
+    - docker load -i image/stretch.tar
+  script:
+    - docker tag debian:wheezy  vpgrp/debian:wheezy
+    - docker tag debian:jessie  vpgrp/debian:jessie
+    - docker tag debian:stretch vpgrp/debian:stretch
+    - docker tag debian:stretch vpgrp/debian:latest
+    - docker push vpgrp/debian:wheezy
+    - docker push vpgrp/debian:jessie
+    - docker push vpgrp/debian:stretch
+    - docker push vpgrp/debian:latest
 
 # https://hub.docker.com/u/vptech/
-push-on-vptech:
-  stage: docker
-  image: vpgrp/kitchen
-  script:
-    - apt-get update && apt-get install -y debootstrap
-    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
-    - ./build.sh -d wheezy  -u vptech -p
-    - ./build.sh -d jessie  -u vptech -p
-    - ./build.sh -d stretch -u vptech -p
+vptech:
+  <<: *dind
+  stage: deploy
   only:
     - master
-  when: manual
+  before_script:
+    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
+    - docker load -i image/wheezy.tar
+    - docker load -i image/jessie.tar
+    - docker load -i image/stretch.tar
+  script:
+    - docker tag debian:wheezy  vptech/debian:wheezy
+    - docker tag debian:jessie  vptech/debian:jessie
+    - docker tag debian:stretch vptech/debian:stretch
+    - docker tag debian:stretch vptech/debian:latest
+    - docker push vptech/debian:wheezy
+    - docker push vptech/debian:jessie
+    - docker push vptech/debian:stretch
+    - docker push vptech/debian:latest
 # EOF
