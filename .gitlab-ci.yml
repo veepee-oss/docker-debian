@@ -70,7 +70,7 @@ stretch:
 # https://hub.docker.com/u/vpgrp/
 vpgrp:
   <<: *dind
-  stage: deploy
+  stage: push
   only:
     - master
   before_script:
@@ -91,7 +91,7 @@ vpgrp:
 # https://hub.docker.com/u/vptech/
 vptech:
   <<: *dind
-  stage: deploy
+  stage: push
   only:
     - master
   before_script:
