@@ -6,9 +6,10 @@
     expire_in: 1 day
     paths:
       - image
+  before_script:
+    - apt-get update  -qq -y
+    - apt-get install -qq -y deboostrap
   image: vpgrp/kitchen:latest
-  services:
-    - docker:dind
   stage: build
   variables:
     DOCKER_DRIVER: overlay
