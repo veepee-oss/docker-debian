@@ -85,15 +85,21 @@ vpgrp:
   <<: *deploy
   script:
     - docker tag debian:wheezy  vpgrp/debian:wheezy
+    - docker tag debian:wheezy  vpgrp/debian:7
     - docker tag debian:jessie  vpgrp/debian:jessie
+    - docker tag debian:jessie  vpgrp/debian:8
     - docker tag debian:jessie  vpgrp/debian:oldstable
     - docker tag debian:stretch vpgrp/debian:stretch
+    - docker tag debian:stretch vpgrp/debian:9
     - docker tag debian:stretch vpgrp/debian:stable
     - docker tag debian:stretch vpgrp/debian:latest
     - docker push vpgrp/debian:wheezy
+    - docker push vpgrp/debian:7
     - docker push vpgrp/debian:jessie
+    - docker push vpgrp/debian:8
     - docker push vpgrp/debian:oldstable
     - docker push vpgrp/debian:stretch
+    - docker push vpgrp/debian:9
     - docker push vpgrp/debian:stable
     - docker push vpgrp/debian:latest
 
@@ -102,15 +108,21 @@ vptech:
   <<: *deploy
   script:
     - docker tag debian:wheezy  vptech/debian:wheezy
+    - docker tag debian:wheezy  vptech/debian:7
     - docker tag debian:jessie  vptech/debian:jessie
+    - docker tag debian:jessie  vptech/debian:8
     - docker tag debian:jessie  vptech/debian:oldstable
     - docker tag debian:stretch vptech/debian:stretch
+    - docker tag debian:stretch vptech/debian:9
     - docker tag debian:stretch vptech/debian:stable
     - docker tag debian:stretch vptech/debian:latest
     - docker push vptech/debian:wheezy
+    - docker push vptech/debian:7
     - docker push vptech/debian:jessie
+    - docker push vptech/debian:8
     - docker push vptech/debian:oldstable
     - docker push vptech/debian:stretch
+    - docker push vptech/debian:9
     - docker push vptech/debian:stable
     - docker push vptech/debian:latest
 # EOF
