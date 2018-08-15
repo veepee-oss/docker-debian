@@ -1,14 +1,30 @@
 ---
 # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 
-.template: &dind
-  image: docker:latest
+.template: &build
   artifacts:
     expire_in: 1 day
     paths:
       - image
+  image: vpgrp/kitchen:latest
   services:
     - docker:dind
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay
+
+.template: &deploy
+  before_script:
+    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
+    - docker load -i image/wheezy.tar
+    - docker load -i image/jessie.tar
+    - docker load -i image/stretch.tar
+  image: docker:latest
+  only:
+    - master
+  services:
+    - docker:dind
+  stage: deploy
   variables:
     DOCKER_DRIVER: overlay
 
@@ -16,7 +32,7 @@ stages:
   - commit
   - syntax
   - build
-  - push
+  - deploy
 
 # commit
 git-history:
@@ -43,41 +59,30 @@ shellcheck:
 
 # build
 wheezy:
-  <<: *dind
-  stage: build
+  <<: *build
   script:
-    - mkdir image
     - ./build.sh -d wheezy
+    - mkdir image
     - docker save debian:wheezy > image/wheezy.tar
 
 jessie:
-  <<: *dind
-  stage: build
+  <<: *build
   script:
-    - mkdir image
     - ./build.sh -d jessie
+    - mkdir image
     - docker save debian:jessie > image/jessie.tar
 
 stretch:
-  <<: *dind
-  stage: build
+  <<: *build
   script:
-    - mkdir image
     - ./build.sh -d stretch
+    - mkdir image
     - docker save debian:stretch > image/stretch.tar
 
-# push
+# deploy
 # https://hub.docker.com/u/vpgrp/
 vpgrp:
-  <<: *dind
-  stage: push
-  only:
-    - master
-  before_script:
-    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
-    - docker load -i image/wheezy.tar
-    - docker load -i image/jessie.tar
-    - docker load -i image/stretch.tar
+  <<: *deploy
   script:
     - docker tag debian:wheezy  vpgrp/debian:wheezy
     - docker tag debian:jessie  vpgrp/debian:jessie
@@ -90,15 +95,7 @@ vpgrp:
 
 # https://hub.docker.com/u/vptech/
 vptech:
-  <<: *dind
-  stage: push
-  only:
-    - master
-  before_script:
-    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
-    - docker load -i image/wheezy.tar
-    - docker load -i image/jessie.tar
-    - docker load -i image/stretch.tar
+  <<: *deploy
   script:
     - docker tag debian:wheezy  vptech/debian:wheezy
     - docker tag debian:jessie  vptech/debian:jessie
