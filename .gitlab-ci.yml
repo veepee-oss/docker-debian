@@ -29,30 +29,13 @@
     DOCKER_DRIVER: overlay
 
 stages:
-  - commit
-  - syntax
+  - linter
   - build
   - deploy
 
-# commit
-git-history:
-  stage: commit
-  script:
-    - >
-      bash <(curl --fail --location --silent --show-error
-      https://git.io/vxIxF)
-
-lines-length:
-  stage: commit
-  script:
-    - >
-      bash <(curl --fail --location --silent --show-error
-      https://git.io/vxIxN)
-      *.list
-
-# syntax
+# linter
 shellcheck:
-  stage: syntax
+  stage: linter
   image: vpgrp/linter:shell
   script:
     - shellcheck build.sh
