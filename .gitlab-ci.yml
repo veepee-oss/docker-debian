@@ -16,9 +16,9 @@
 .template: &deploy
   before_script:
     - docker login -u "$REGISTRY_USERNAME" -p "$REGISTRY_PASSWORD"
-    - docker load -i image/wheezy.tar
-    - docker load -i image/jessie.tar
-    - docker load -i image/stretch.tar
+    - docker load -i image/v7.0.tar
+    - docker load -i image/v8.0.tar
+    - docker load -i image/v9.0.tar
   image: docker:latest
   only:
     - master
@@ -29,13 +29,13 @@
     DOCKER_DRIVER: overlay
 
 stages:
-  - linter
+  - test
   - build
   - deploy
 
-# linter
+# test
 shellcheck:
-  stage: linter
+  stage: test
   image: vpgrp/linter:shell
   script:
     - shellcheck build.sh
@@ -46,21 +46,21 @@ v7.0:
   script:
     - ./build.sh -d wheezy -v
     - mkdir image
-    - docker save debian:wheezy > image/wheezy.tar
+    - docker save debian:wheezy > image/v7.0.tar
 
 v8.0:
   <<: *build
   script:
     - ./build.sh -d jessie -v
     - mkdir image
-    - docker save debian:jessie > image/jessie.tar
+    - docker save debian:jessie > image/v8.0.tar
 
 v9.0:
   <<: *build
   script:
     - ./build.sh -d stretch -v
     - mkdir image
-    - docker save debian:stretch > image/stretch.tar
+    - docker save debian:stretch > image/v9.0.tar
 
 # deploy
 # https://hub.docker.com/u/vpgrp/
