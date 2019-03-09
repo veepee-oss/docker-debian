@@ -113,9 +113,9 @@ request.
    ╚═(███)═╝
 ```
 
-[license-img]: https://img.shields.io/badge/license-Apache-blue.svg
+[license-img]: https://img.shields.io/badge/license-ISC-blue.svg
 [license-href]: LICENSE
-[docker-img]: https://img.shields.io/docker/pulls/vpgrp/debian.svg
-[docker-href]: https://registry.hub.docker.com/u/vpgrp/debian
+[docker-img]: https://img.shields.io/docker/pulls/vptech/debian.svg
+[docker-href]: https://hub.docker.com/r/vptech/debian
 [overview-href]: https://www.debian.org/
 [contribute-href]: CONTRIBUTING.md
