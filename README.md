@@ -83,13 +83,13 @@ Show help.
 Build your own Debian image (eg. jessie).
 
 ```bash
-./build.sh -d jessie -u vpgrp
+./build.sh -d jessie -u vptech
 ```
 
 Build your own Debian image (eg. stretch) and push it on the Docker Hub.
 
 ```bash
-./build.sh -d stretch -u vpgrp -p
+./build.sh -d stretch -u vptech -p
 ```
 
 ## Limitations
