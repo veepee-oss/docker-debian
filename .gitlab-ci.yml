@@ -15,7 +15,7 @@
 
 .template: &deploy
   before_script:
-    - docker login -u "$VPGRP_CI_USER" -p "$VPGRP_CI_PASSWORD"
+    - docker login -u "$REGISTRY_USERNAME" -p "$REGISTRY_PASSWORD"
     - docker load -i image/wheezy.tar
     - docker load -i image/jessie.tar
     - docker load -i image/stretch.tar
@@ -44,21 +44,21 @@ shellcheck:
 wheezy:
   <<: *build
   script:
-    - ./build.sh -d wheezy
+    - ./build.sh -d wheezy -v
     - mkdir image
     - docker save debian:wheezy > image/wheezy.tar
 
 jessie:
   <<: *build
   script:
-    - ./build.sh -d jessie
+    - ./build.sh -d jessie -v
     - mkdir image
     - docker save debian:jessie > image/jessie.tar
 
 stretch:
   <<: *build
   script:
-    - ./build.sh -d stretch
+    - ./build.sh -d stretch -v
     - mkdir image
     - docker save debian:stretch > image/stretch.tar
 
