@@ -30,9 +30,9 @@ all of our images are accurates.
 
 Supported tags.
 
-- 7, 7.0, wheezy
-- 8, 8.0, jessie, oldstable
-- 9, 0.0, stretch, stable, latest
+- 7, wheezy
+- 8, jessie, oldstable
+- 9, stretch, stable, latest
 
 ## Setup
 
