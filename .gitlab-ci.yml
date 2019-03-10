@@ -2,29 +2,30 @@
 # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 
 .template: &build
+  stage: build
+  image: vpgrp/kitchen:latest
+  before_script:
+    - apt-get update
+    - apt-get install -t stretch-backports -y debootstrap
   artifacts:
     expire_in: 1 day
     paths:
       - image
-  before_script:
-    - apt-get update && apt-get install -t stretch-backports -y debootstrap
-  image: vpgrp/kitchen:latest
-  stage: build
   variables:
     DOCKER_DRIVER: overlay
 
 .template: &deploy
+  stage: deploy
+  image: docker:latest
   before_script:
     - docker login -u "$REGISTRY_USERNAME" -p "$REGISTRY_PASSWORD"
     - docker load -i image/v7.0.tar
     - docker load -i image/v8.0.tar
     - docker load -i image/v9.0.tar
-  image: docker:latest
   only:
     - master
   services:
     - docker:dind
-  stage: deploy
   variables:
     DOCKER_DRIVER: overlay
 
