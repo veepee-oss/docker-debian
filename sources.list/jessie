@@ -1,4 +1,3 @@
-deb http://mirror.vpgrp.io/debian jessie main contrib non-free
-deb http://mirror.vpgrp.io/debian jessie-updates main contrib non-free
-deb http://mirror.vpgrp.io/debian jessie-backports main contrib non-free
+deb http://mirror.vpgrp.io/debian-archive/debian jessie main contrib non-free
+deb http://mirror.vpgrp.io/debian-archive/debian jessie-backports main contrib non-free
 deb http://mirror.vpgrp.io/debian-security jessie/updates main contrib non-free
