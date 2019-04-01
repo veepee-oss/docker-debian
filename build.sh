@@ -136,7 +136,7 @@ EOF
     echo ' * /etc/apt/sources.list' 1>&3
     ${sudo} cp -r "sources.list/${distname}" "${image}/etc/apt/sources.list"
 
-    if [ "${distname}" = 'lenny' ] || [ "${distname}" = 'squeeze' ]
+    if [[ "${distname}" =~ ^(lenny|squeeze|wheezy|jessie)$ ]]
     then
 
         # create /etc/apt/apt.conf.d/ignore-release-date
@@ -372,12 +372,12 @@ then
         wheezy|7|7.0)
             distname='wheezy'
             distid='7'
-            mirror='http://mirror.vpgrp.io/debian'
+            mirror='http://mirror.vpgrp.io/debian-archive/debian'
             ;;
         jessie|8|8.0)
             distname='jessie'
             distid='8'
-            mirror='http://mirror.vpgrp.io/debian'
+            mirror='http://mirror.vpgrp.io/debian-archive/debian'
             ;;
         stretch|9|9.0)
             distname='stretch'
