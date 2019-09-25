@@ -22,6 +22,7 @@
     - docker load -i image/debian-v7.0.tar
     - docker load -i image/debian-v8.0.tar
     - docker load -i image/debian-v9.0.tar
+    - docker load -i image/debian-v10.0.tar
   only:
     - master
   services:
@@ -63,6 +64,13 @@ v9.0:
     - mkdir image
     - docker save debian:stretch > image/debian-v9.0.tar
 
+v10.0:
+  <<: *build
+  script:
+    - ./build.sh -d buster -v
+    - mkdir image
+    - docker save debian:buster > image/debian-v10.0.tar
+
 # deploy
 # https://hub.docker.com/u/vpgrp/
 vpgrp:
@@ -72,18 +80,22 @@ vpgrp:
     - docker tag debian:wheezy  vpgrp/debian:7
     - docker tag debian:jessie  vpgrp/debian:jessie
     - docker tag debian:jessie  vpgrp/debian:8
-    - docker tag debian:jessie  vpgrp/debian:oldstable
     - docker tag debian:stretch vpgrp/debian:stretch
     - docker tag debian:stretch vpgrp/debian:9
-    - docker tag debian:stretch vpgrp/debian:stable
-    - docker tag debian:stretch vpgrp/debian:latest
+    - docker tag debian:stretch vpgrp/debian:oldstable
+    - docker tag debian:buster  vpgrp/debian:buster
+    - docker tag debian:buster  vpgrp/debian:10
+    - docker tag debian:buster  vpgrp/debian:stable
+    - docker tag debian:buster  vpgrp/debian:latest
     - docker push vpgrp/debian:wheezy
     - docker push vpgrp/debian:7
     - docker push vpgrp/debian:jessie
     - docker push vpgrp/debian:8
-    - docker push vpgrp/debian:oldstable
     - docker push vpgrp/debian:stretch
     - docker push vpgrp/debian:9
+    - docker push vpgrp/debian:oldstable
+    - docker push vpgrp/debian:buster
+    - docker push vpgrp/debian:10
     - docker push vpgrp/debian:stable
     - docker push vpgrp/debian:latest
 
@@ -95,18 +107,22 @@ vptech:
     - docker tag debian:wheezy  vptech/debian:7
     - docker tag debian:jessie  vptech/debian:jessie
     - docker tag debian:jessie  vptech/debian:8
-    - docker tag debian:jessie  vptech/debian:oldstable
     - docker tag debian:stretch vptech/debian:stretch
     - docker tag debian:stretch vptech/debian:9
-    - docker tag debian:stretch vptech/debian:stable
-    - docker tag debian:stretch vptech/debian:latest
+    - docker tag debian:stretch vptech/debian:oldstable
+    - docker tag debian:buster  vptech/debian:buster
+    - docker tag debian:buster  vptech/debian:10
+    - docker tag debian:buster  vptech/debian:stable
+    - docker tag debian:buster  vptech/debian:latest
     - docker push vptech/debian:wheezy
     - docker push vptech/debian:7
     - docker push vptech/debian:jessie
     - docker push vptech/debian:8
-    - docker push vptech/debian:oldstable
     - docker push vptech/debian:stretch
     - docker push vptech/debian:9
+    - docker push vptech/debian:oldstable
+    - docker push vptech/debian:buster
+    - docker push vptech/debian:10
     - docker push vptech/debian:stable
     - docker push vptech/debian:latest
 # EOF

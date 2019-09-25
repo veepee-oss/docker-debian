@@ -8,10 +8,10 @@ set -e
 PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 arch='amd64'
-oldstable='jessie'
-stable='stretch'
-testing='buster'
-version='4.0'
+oldstable='stretch'
+stable='buster'
+testing='bullseye'
+version='4.1'
 
 function usage()
 {
@@ -39,7 +39,7 @@ OPTIONS:
                         default: no
 
    -l, --latest         Force the "latest"
-                        default: stretch
+                        default: buster
 
    -v, --verbose        Verbose mode
 
