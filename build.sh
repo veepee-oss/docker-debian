@@ -33,9 +33,8 @@ OPTIONS:
                         eg: -e foo bar baz
                         default: none
 
-   -T  --tag            Over-write the default docker tags with this one
-                        Use the dist value as prefix
-                        eg: buster-foo
+   -T  --extra-tag      Add a tag suffix to the created one
+                        eg: buster-stable => buster-stable-{tag}
                         default: none
 
    -t, --timezone       Choose your preferred timezone
