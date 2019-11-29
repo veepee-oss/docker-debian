@@ -3,7 +3,7 @@
 
 .template: &build
   stage: build
-  image: vpgrp/kitchen:latest
+  image: vptech/kitchen:latest
   before_script:
     - apt-get update
     - apt-get install -t stretch-backports -y debootstrap
@@ -22,6 +22,8 @@
     - docker load -i image/debian-v8.0.tar
     - docker load -i image/debian-v9.0.tar
     - docker load -i image/debian-v10.0.tar
+    - docker load -i image/debian-v9.0-systemd.tar
+    - docker load -i image/debian-v10.0-systemd.tar
   only:
     - master
   services:
@@ -37,7 +39,7 @@ stages:
 # test
 shellcheck:
   stage: test
-  image: vpgrp/linter:shell
+  image: vptech/linter:shell
   script:
     - shellcheck build.sh
 
@@ -56,6 +58,13 @@ v9.0:
     - mkdir image
     - docker save debian:stretch > image/debian-v9.0.tar
 
+v9.0_systemd:
+  <<: *build
+  script:
+    - ./build.sh -d stretch -e "systemd" -T "systemd" -v
+    - mkdir image
+    - docker save debian:stretch-systemd > image/debian-v9.0-systemd.tar
+
 v10.0:
   <<: *build
   script:
@@ -63,29 +72,12 @@ v10.0:
     - mkdir image
     - docker save debian:buster > image/debian-v10.0.tar
 
-# deploy
-# https://hub.docker.com/u/vpgrp/
-vpgrp:
-  <<: *deploy
+v10.0_systemd:
+  <<: *build
   script:
-    - docker tag debian:jessie  vpgrp/debian:jessie
-    - docker tag debian:jessie  vpgrp/debian:8
-    - docker tag debian:stretch vpgrp/debian:stretch
-    - docker tag debian:stretch vpgrp/debian:9
-    - docker tag debian:stretch vpgrp/debian:oldstable
-    - docker tag debian:buster  vpgrp/debian:buster
-    - docker tag debian:buster  vpgrp/debian:10
-    - docker tag debian:buster  vpgrp/debian:stable
-    - docker tag debian:buster  vpgrp/debian:latest
-    - docker push vpgrp/debian:jessie
-    - docker push vpgrp/debian:8
-    - docker push vpgrp/debian:stretch
-    - docker push vpgrp/debian:9
-    - docker push vpgrp/debian:oldstable
-    - docker push vpgrp/debian:buster
-    - docker push vpgrp/debian:10
-    - docker push vpgrp/debian:stable
-    - docker push vpgrp/debian:latest
+    - ./build.sh -d buster -e "systemd" -T "systemd" -v
+    - mkdir image
+    - docker save debian:buster-systemd > image/debian-v10.0-systemd.tar
 
 # https://hub.docker.com/u/vptech/
 vptech:
@@ -96,17 +88,29 @@ vptech:
     - docker tag debian:stretch vptech/debian:stretch
     - docker tag debian:stretch vptech/debian:9
     - docker tag debian:stretch vptech/debian:oldstable
-    - docker tag debian:buster  vptech/debian:buster
-    - docker tag debian:buster  vptech/debian:10
-    - docker tag debian:buster  vptech/debian:stable
-    - docker tag debian:buster  vptech/debian:latest
+    - docker tag debian:stretch-systemd vptech/debian:stretch-systemd
+    - docker tag debian:stretch-systemd vptech/debian:9-systemd
+    - docker tag debian:stretch-systemd vptech/debian:oldstable-systemd
+    - docker tag debian:buster vptech/debian:buster
+    - docker tag debian:buster vptech/debian:10
+    - docker tag debian:buster vptech/debian:stable
+    - docker tag debian:buster vptech/debian:latest
+    - docker tag debian:buster-systemd vptech/debian:buster-systemd
+    - docker tag debian:buster-systemd vptech/debian:10-systemd
+    - docker tag debian:buster-systemd vptech/debian:stable-systemd
     - docker push vptech/debian:jessie
     - docker push vptech/debian:8
     - docker push vptech/debian:stretch
     - docker push vptech/debian:9
     - docker push vptech/debian:oldstable
+    - docker push vptech/debian:stretch-systemd
+    - docker push vptech/debian:9-systemd
+    - docker push vptech/debian:oldstable-systemd
     - docker push vptech/debian:buster
     - docker push vptech/debian:10
     - docker push vptech/debian:stable
+    - docker push vptech/debian:buster-systemd
+    - docker push vptech/debian:10-systemd
+    - docker push vptech/debian:stable-systemd
     - docker push vptech/debian:latest
 # EOF
