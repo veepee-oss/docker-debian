@@ -29,6 +29,14 @@ OPTIONS:
    -d, --dist           Choose Debian distribution
                         eg: lenny, squeeze, wheezy, jessie, stretch, buster
 
+   -e, --extra-packages space separated list of extra packages
+                        eg: -e foo bar baz
+                        default: none
+
+   -T  --extra-tag      Add a tag suffix to the created one
+                        eg: buster-stable => buster-stable-{tag}
+                        default: none
+
    -t, --timezone       Choose your preferred timezone
                         default: Europe/Amsterdam
 
@@ -262,20 +270,21 @@ EOF
 function docker_import()
 {
     echo "-- docker import from ${image}" 1>&3
-    docker import "${image}.tar" "${user}debian:${distname}"
-    docker run "${user}debian:${distname}" \
-           echo " * build ${user}debian:${distname}" 1>&3
-    docker tag "${user}debian:${distname}" "${user}debian:${distid}"
-    docker run "${user}debian:${distid}" \
-           echo " * build ${user}debian:${distid}" 1>&3
+
+    docker import "${image}.tar" "${user}debian:${distname}${tag}"
+    docker run "${user}debian:${distname}${tag}" \
+           echo " * build ${user}debian:${distname}${tag}" 1>&3
+    docker tag "${user}debian:${distname}${tag}" "${user}debian:${distid}${tag}"
+    docker run "${user}debian:${distid}${tag}" \
+           echo " * build ${user}debian:${distid}${tag}" 1>&3
 
     for import in latest oldstable stable testing
     do
         if [ "${distname}" = "${!import}" ]
         then
-            docker tag "${user}debian:${distname}" "${user}debian:${import}"
-            docker run "${user}debian:${import}" \
-                   echo " * build ${user}debian:${import}" 1>&3
+            docker tag "${user}debian:${distname}${tag}" "${user}debian:${import}${tag}"
+            docker run "${user}debian:${import}${tag}" \
+                   echo " * build ${user}debian:${import}${tag}" 1>&3
         fi
     done
 }
@@ -284,22 +293,22 @@ function docker_import()
 function docker_push()
 {
     echo "-- docker push" 1>&3
-    echo " * push ${user}debian:${distname}" 1>&3
-    docker push "${user}debian:${distname}"
-    echo " * push ${user}debian:${distid}" 1>&3
-    docker push "${user}debian:${distid}"
+    echo " * push ${user}debian:${distname}${tag}" 1>&3
+    docker push "${user}debian:${distname}${tag}"
+    echo " * push ${user}debian:${distid}${tag}" 1>&3
+    docker push "${user}debian:${distid}${tag}"
 
     for push in latest oldstable stable testing
     do
         if [ "${distname}" = "${!push}"  ]
         then
-            echo " * push ${user}debian:${push}" 1>&3
-            docker push "${user}debian:${push}"
+            echo " * push ${user}debian:${push}${tag}" 1>&3
+            docker push "${user}debian:${push}${tag}"
         fi
     done
 }
 
-while getopts 'hd:t:u:plvV' OPTIONS
+while getopts 'hd:e:T:t:u:plvV' OPTIONS
 do
     case ${OPTIONS} in
         h)
@@ -310,6 +319,14 @@ do
         d)
             # -d / --dist
             dist=${OPTARG}
+            ;;
+        e)
+            # -e / --extra-packages
+            extra=${OPTARG}
+            ;;
+        T)
+            # -T / --tag
+            tag=${OPTARG}
             ;;
         t)
             # -t / --timezone
@@ -332,7 +349,7 @@ do
             verbose='true'
             ;;
         V)
-            # -v / --version
+            # -V / --version
             echo "${version}"
             exit 0
             ;;
@@ -353,6 +370,12 @@ if [ ! -x "$(command -v debootstrap)" ]
 then
     echo "Please install debootstrap (see README.md)"
     exit 1
+fi
+
+# -e / --extra-packages
+if [ -z "${extra}" ]
+then
+    extra=''
 fi
 
 # -d / --dist
@@ -383,19 +406,19 @@ then
             distname='stretch'
             distid='9'
             mirror='http://mirror.vpgrp.io/debian'
-            include='gnupg2'
+            include="gnupg2 ${extra}"
             ;;
         buster|10|10.0)
             distname='buster'
             distid='10'
             mirror='http://mirror.vpgrp.io/debian'
-            include='gnupg2'
+            include="gnupg2 ${extra}"
             ;;
         sid)
             distname='sid'
             distid='sid'
             mirror='http://mirror.vpgrp.io/debian'
-            include='gnupg2'
+            include="gnupg2 ${extra}"
             ;;
         *)
             usage
@@ -411,6 +434,15 @@ fi
 if [ -z "${timezone}" ]
 then
     timezone='Europe/Amsterdam'
+fi
+
+
+# -T / --tag
+if [ -z "${tag}" ]
+then
+    tag=''
+else
+    tag="-${tag}"
 fi
 
 # -u / --user

@@ -32,8 +32,8 @@ Supported tags.
 
 - 7,  wheezy
 - 8,  jessie
-- 9,  stretch, oldstable
-- 10, buster, stable, latest
+- 9,  stretch, oldstable, 9-systemd, stretch-systemd, oldstable-systemd
+- 10, buster, stable, 10-systemd, buster-systemd, stable-systemd, latest
 
 ## Setup
 
@@ -91,6 +91,10 @@ Build your own Debian image (eg. stretch) and push it on the Docker Hub.
 
 ```bash
 ./build.sh -d stretch -u vptech -p
+```
+
+```bash
+./build.sh -d buster -e "systemd vim" -T "systemd"
 ```
 
 ## Limitations
