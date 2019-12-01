@@ -3,7 +3,7 @@
 
 .template: &build
   stage: build
-  image: vptech/kitchen:latest
+  image: debian:stretch
   before_script:
     - apt-get update
     - apt-get install -t stretch-backports -y debootstrap
