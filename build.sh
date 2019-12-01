@@ -11,7 +11,7 @@ arch='amd64'
 oldstable='stretch'
 stable='buster'
 testing='bullseye'
-version='4.1'
+version='4.2'
 
 function usage()
 {
@@ -454,7 +454,7 @@ fi
 # -l / --latest
 if [ -z "${latest}" ]
 then
-    latest='stretch'
+    latest='buster'
 fi
 
 # -v / --verbose
