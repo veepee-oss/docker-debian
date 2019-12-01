@@ -5,8 +5,10 @@
   stage: build
   image: debian:buster
   before_script:
+    - curl --silent 'https://mirror.vpgrp.io/keys/docker.gpg' | apt-key --keyring /etc/apt/trusted.gpg.d/docker-keyring.gpg add -
+    - echo "deb https://mirror.vpgrp.io/debian-docker $(lsb_release -c -s) stable" > /etc/apt/sources.list.d/docker.list
     - apt-get update
-    - apt-get install -y -qq debootstrap sudo
+    - apt-get install -y -qq debootstrap docker-ce sudo
   artifacts:
     expire_in: 1 day
     paths:
