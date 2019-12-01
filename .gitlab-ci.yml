@@ -3,10 +3,10 @@
 
 .template: &build
   stage: build
-  image: debian:stretch
+  image: debian:buster
   before_script:
     - apt-get update
-    - apt-get install -t stretch-backports -y debootstrap
+    - apt-get install -y debootstrap
   artifacts:
     expire_in: 1 day
     paths:
