@@ -6,7 +6,7 @@
   image: debian:buster
   before_script:
     - apt-get update
-    - apt-get install -y debootstrap
+    - apt-get install -y -qq debootstrap sudo
   artifacts:
     expire_in: 1 day
     paths:
@@ -83,21 +83,21 @@ v10.0_systemd:
 vptech:
   <<: *deploy
   script:
-    - docker tag debian:jessie  vptech/debian:jessie
-    - docker tag debian:jessie  vptech/debian:8
-    - docker tag debian:stretch vptech/debian:stretch
-    - docker tag debian:stretch vptech/debian:9
-    - docker tag debian:stretch vptech/debian:oldstable
+    - docker tag debian:jessie          vptech/debian:jessie
+    - docker tag debian:jessie          vptech/debian:8
+    - docker tag debian:stretch         vptech/debian:stretch
+    - docker tag debian:stretch         vptech/debian:9
+    - docker tag debian:stretch         vptech/debian:oldstable
     - docker tag debian:stretch-systemd vptech/debian:stretch-systemd
     - docker tag debian:stretch-systemd vptech/debian:9-systemd
     - docker tag debian:stretch-systemd vptech/debian:oldstable-systemd
-    - docker tag debian:buster vptech/debian:buster
-    - docker tag debian:buster vptech/debian:10
-    - docker tag debian:buster vptech/debian:stable
-    - docker tag debian:buster vptech/debian:latest
-    - docker tag debian:buster-systemd vptech/debian:buster-systemd
-    - docker tag debian:buster-systemd vptech/debian:10-systemd
-    - docker tag debian:buster-systemd vptech/debian:stable-systemd
+    - docker tag debian:buster          vptech/debian:buster
+    - docker tag debian:buster          vptech/debian:10
+    - docker tag debian:buster          vptech/debian:stable
+    - docker tag debian:buster          vptech/debian:latest
+    - docker tag debian:buster-systemd  vptech/debian:buster-systemd
+    - docker tag debian:buster-systemd  vptech/debian:10-systemd
+    - docker tag debian:buster-systemd  vptech/debian:stable-systemd
     - docker push vptech/debian:jessie
     - docker push vptech/debian:8
     - docker push vptech/debian:stretch
