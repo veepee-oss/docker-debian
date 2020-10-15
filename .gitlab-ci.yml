@@ -3,7 +3,7 @@
 
 .template: &build
   stage: build
-  image: vptech/kitchen:latest
+  image: docker.registry.vptech.eu/vptech/kitchen:latest
   before_script:
     - apt-get update
     - apt-get install -y -qq debootstrap sudo
@@ -16,7 +16,7 @@
 
 .template: &deploy
   stage: deploy
-  image: docker:latest
+  image: docker.registry.vptech.eu/docker:latest
   before_script:
     - docker login -u "$REGISTRY_USERNAME" -p "$REGISTRY_PASSWORD"
     - docker load -i image/debian-v8.0.tar
@@ -39,7 +39,7 @@ stages:
 # test
 shellcheck:
   stage: test
-  image: vptech/linter:shell
+  image: docker.registry.vptech.eu/vptech/linter:shell
   script:
     - shellcheck build.sh
 
