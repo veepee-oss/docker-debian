@@ -1,23 +1,20 @@
 # docker-debian
 
-[![License][license-img]][license-href]
-[![docker][docker-img]][docker-href]
-
 1. [Overview](#overview)
-2. [Description](#description)
-3. [Tags](#tags)
-4. [Setup](#setup)
-5. [Usage](#usage)
-6. [Limitations](#limitations)
-7. [Development](#development)
-8. [Miscellaneous](#miscellaneous)
+1. [Description](#description)
+1. [Tags](#tags)
+1. [Setup](#setup)
+1. [Usage](#usage)
+1. [Limitations](#limitations)
+1. [Development](#development)
+1. [Miscellaneous](#miscellaneous)
 
 ## Overview
 
 Debian is a  free operating system (OS) for your  computer. An operating system
 is the set of basic programs and utilities that make your computer run.
 
-[debian.org][overview-href]
+[debian.org](https://www.debian.org/)
 
 ## Description
 
@@ -30,12 +27,18 @@ all of our images are accurates.
 
 Supported tags.
 
+### Without systemd
+
 - 7,  wheezy
 - 8,  jessie
 - 9,  stretch, oldstable,
-- 9-systemd, stretch-systemd, oldstable-systemd
 - 10, buster, stable, latest
-- 10-systemd, buster-systemd, stable-systemd
+
+### With systemd
+
+- 9-systemd, stretch-systemd,
+- 8-systemd, jessie-systemd
+- 10-systemd, buster-systemd
 
 ## Setup
 
@@ -107,7 +110,7 @@ Only work on Debian, Devuan and Ubuntu.
 
 ## Development
 
-Please read carefully [CONTRIBUTING.md][contribute-href]  before making a merge
+Please read carefully [CONTRIBUTING.md](CONTRIBUTING.md) before making a merge
 request.
 
 ## Miscellaneous
@@ -121,10 +124,3 @@ request.
   ╚═(███)═╝
    ╚═(███)═╝
 ```
-
-[license-img]: https://img.shields.io/badge/license-ISC-blue.svg
-[license-href]: LICENSE
-[docker-img]: https://img.shields.io/docker/pulls/vptech/debian.svg
-[docker-href]: https://hub.docker.com/r/vptech/debian
-[overview-href]: https://www.debian.org/
-[contribute-href]: CONTRIBUTING.md

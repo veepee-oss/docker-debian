@@ -1,4 +1,4 @@
-deb http://mirror.vpgrp.io/debian buster main contrib non-free
-deb http://mirror.vpgrp.io/debian buster-updates main contrib non-free
-deb http://mirror.vpgrp.io/debian buster-backports main contrib non-free
-deb http://mirror.vpgrp.io/debian-security buster/updates main contrib non-free
+deb http://mirror.vptech.eu/debian buster main contrib non-free
+deb http://mirror.vptech.eu/debian buster-updates main contrib non-free
+deb http://mirror.vptech.eu/debian buster-backports main contrib non-free
+deb http://mirror.vptech.eu/debian-security buster/updates main contrib non-free
