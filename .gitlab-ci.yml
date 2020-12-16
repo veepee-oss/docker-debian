@@ -106,7 +106,7 @@ vptech:
     - docker tag debian:jessie          vptech/debian:jessie
     - docker tag debian:jessie          vptech/debian:8
     - docker tag debian:jessie-systemd  vptech/debian:jessie-systemd
-    - docker tag debian:jessie -systemd vptech/debian:8-systemd
+    - docker tag debian:jessie-systemd  vptech/debian:8-systemd
     - docker tag debian:stretch         vptech/debian:stretch
     - docker tag debian:stretch         vptech/debian:9
     - docker tag debian:stretch         vptech/debian:oldstable
