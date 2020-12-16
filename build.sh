@@ -11,7 +11,7 @@ arch='amd64'
 oldstable='stretch'
 stable='buster'
 testing='bullseye'
-version='4.2'
+version='4.3'
 
 function usage()
 {
@@ -255,7 +255,7 @@ EOF
     # unmount
     ${sudo} umount "${image}/dev/pts"
     ${sudo} umount "${image}/dev"
-    ${sudo} umount "${image}/proc"
+    # ${sudo} umount "${image}/proc"
     ${sudo} umount "${image}/sys"
 
     # create archive
@@ -270,7 +270,7 @@ EOF
 function docker_import()
 {
     echo "-- docker import from ${image}" 1>&3
-
+    mount -t proc proc /proc
     docker import "${image}.tar" "${user}debian:${distname}${tag}"
     docker run "${user}debian:${distname}${tag}" \
            echo " * build ${user}debian:${distname}${tag}" 1>&3

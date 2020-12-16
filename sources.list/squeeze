@@ -1,5 +1,5 @@
-deb http://mirror.vpgrp.io/debian-archive/debian squeeze main contrib non-free
-deb http://mirror.vpgrp.io/debian-archive/debian squeeze-lts main contrib non-free
-deb http://mirror.vpgrp.io/debian-archive/debian-backports squeeze-backports main contrib non-free
-deb http://mirror.vpgrp.io/debian-archive/debian-backports squeeze-backports-sloppy main contrib non-free
-deb http://mirror.vpgrp.io/debian-archive/debian-security squeeze/updates main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian squeeze main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian squeeze-lts main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian-backports squeeze-backports main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian-backports squeeze-backports-sloppy main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian-security squeeze/updates main contrib non-free
