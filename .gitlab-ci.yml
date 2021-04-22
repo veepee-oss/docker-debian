@@ -2,7 +2,7 @@
 
 include:
   - project: veepee/vptech/sre/iac/ci-cd/markdown-lint
-    ref: 1.2.2
+    ref: 1.2.3
     file: gitlab-ci.yml
   - project: veepee/vptech/sre/iac/ci-cd/semantic-release
     ref: 3.3.0
@@ -57,20 +57,6 @@ stages:
   - release
 
 # build
-v8.0:
-  <<: *build
-  script:
-    - ./build.sh -d jessie -v
-    - mkdir image
-    - docker save debian:jessie > image/debian-v8.0.tar
-
-v8.0:systemd:
-  <<: *build
-  script:
-    - ./build.sh -d jessie -e "systemd" -T "systemd" -v
-    - mkdir image
-    - docker save debian:jessie-systemd > image/debian-v8.0-systemd.tar
-
 v9.0:
   <<: *build
   script:
