@@ -34,8 +34,6 @@ include:
   image: docker.registry.vptech.eu/docker:latest
   before_script:
     - docker login -u "$DOCKER_PUBLIC_REGISTRY_USERNAME" -p "$DOCKER_PUBLIC_REGISTRY_PASSWORD"
-    - docker load -i image/debian-v8.0.tar
-    - docker load -i image/debian-v8.0-systemd.tar
     - docker load -i image/debian-v9.0.tar
     - docker load -i image/debian-v9.0-systemd.tar
     - docker load -i image/debian-v10.0.tar
@@ -89,10 +87,6 @@ v10.0:systemd:
 vptech:
   <<: *deploy
   script:
-    - docker tag debian:jessie          vptech/debian:jessie
-    - docker tag debian:jessie          vptech/debian:8
-    - docker tag debian:jessie-systemd  vptech/debian:jessie-systemd
-    - docker tag debian:jessie-systemd  vptech/debian:8-systemd
     - docker tag debian:stretch         vptech/debian:stretch
     - docker tag debian:stretch         vptech/debian:9
     - docker tag debian:stretch         vptech/debian:oldstable
