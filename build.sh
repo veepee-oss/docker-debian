@@ -8,17 +8,17 @@ set -e
 PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 arch='amd64'
-oldstable='stretch'
-stable='buster'
-testing='bullseye'
-version='4.3'
+oldstable='buster'
+stable='bullseye'
+testing='bookworm'
+version='4.4'
 
 function usage()
 {
     cat <<EOF
 
 NAME:
-   build.sh - Docker images' builder of Debian.
+   build.sh - Debian docker images builder.
 
 USAGE:
    build.sh -d <dist>
@@ -27,7 +27,7 @@ OPTIONS:
    -h, --help           Show help
 
    -d, --dist           Choose Debian distribution
-                        eg: lenny, squeeze, wheezy, jessie, stretch, buster
+                        eg: lenny, squeeze, wheezy, jessie, stretch, buster, bullseye
 
    -e, --extra-packages space separated list of extra packages
                         eg: -e foo bar baz
@@ -47,7 +47,7 @@ OPTIONS:
                         default: no
 
    -l, --latest         Force the "latest"
-                        default: buster
+                        default: bullseye
 
    -v, --verbose        Verbose mode
 
@@ -385,39 +385,45 @@ then
         lenny|5|5.0)
             distname='lenny'
             distid='5'
-            mirror='http://mirror.vpgrp.io/debian-archive/debian'
+            mirror='http://mirror.veepee.tech/debian-archive/debian'
             ;;
         squeeze|6|6.0)
             distname='squeeze'
             distid='6'
-            mirror='http://mirror.vpgrp.io/debian-archive/debian'
+            mirror='http://mirror.veepee.tech/debian-archive/debian'
             ;;
         wheezy|7|7.0)
             distname='wheezy'
             distid='7'
-            mirror='http://mirror.vpgrp.io/debian-archive/debian'
+            mirror='http://mirror.veepee.tech/debian-archive/debian'
             ;;
         jessie|8|8.0)
             distname='jessie'
             distid='8'
-            mirror='http://mirror.vpgrp.io/debian-archive/debian'
+            mirror='http://mirror.veepee.tech/debian-archive/debian'
             ;;
         stretch|9|9.0)
             distname='stretch'
             distid='9'
-            mirror='http://mirror.vpgrp.io/debian'
+            mirror='http://mirror.veepee.tech/debian'
             include="gnupg2 ${extra}"
             ;;
         buster|10|10.0)
             distname='buster'
             distid='10'
-            mirror='http://mirror.vpgrp.io/debian'
+            mirror='http://mirror.veepee.tech/debian'
+            include="gnupg2 ${extra}"
+            ;;
+        bullseye|11|11.0)
+            distname='bullseye'
+            distid='11'
+            mirror='http://mirror.veepee.tech/debian'
             include="gnupg2 ${extra}"
             ;;
         sid)
             distname='sid'
             distid='sid'
-            mirror='http://mirror.vpgrp.io/debian'
+            mirror='http://mirror.veepee.tech/debian'
             include="gnupg2 ${extra}"
             ;;
         *)
@@ -454,7 +460,7 @@ fi
 # -l / --latest
 if [ -z "${latest}" ]
 then
-    latest='buster'
+    latest='bullseye'
 fi
 
 # -v / --verbose
