@@ -1,4 +1,4 @@
-deb http://mirror.vptech.eu/debian stretch main contrib non-free
-deb http://mirror.vptech.eu/debian stretch-updates main contrib non-free
-deb http://mirror.vptech.eu/debian stretch-backports main contrib non-free
-deb http://mirror.vptech.eu/debian-security stretch/updates main contrib non-free
+deb http://mirror.veepee.tech/debian stretch main contrib non-free
+deb http://mirror.veepee.tech/debian stretch-updates main contrib non-free
+deb http://mirror.veepee.tech/debian stretch-backports main contrib non-free
+deb http://mirror.veepee.tech/debian-security stretch/updates main contrib non-free

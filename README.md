@@ -31,14 +31,16 @@ Supported tags.
 
 - 7,  wheezy
 - 8,  jessie
-- 9,  stretch, oldstable,
-- 10, buster, stable, latest
+- 9,  stretch
+- 10, buster, oldstable
+- 11, bullseye
 
 ### With systemd
 
 - 9-systemd, stretch-systemd,
 - 8-systemd, jessie-systemd
 - 10-systemd, buster-systemd
+- 11-systemd, bullseye-systemd
 
 ## Setup
 
@@ -76,9 +78,9 @@ docker login
 ## Usage
 
 You first need to choose which  dist between lenny (5.0), squeeze (6.0), wheezy
-(7.0), jessie (8.0), stretch (9.0) and  buster (10.0) you want (stretch will be
-the 'latest'  tag) and you  need to choose you  user (or organization)  name on
-Docker Hub.
+(7.0), jessie (8.0),  stretch (9.0), buster (10.0) or bullseye  (11.0) you want
+(bullseye  will be  the 'latest'  tag)  and you  need  to choose  you user  (or
+organization) name on Docker Hub.
 
 Show help.
 
@@ -86,22 +88,22 @@ Show help.
 ./build.sh -h
 ```
 
-Build your own Debian image (eg. jessie).
+Build your own Debian image (eg. bullseye).
 
 ```bash
-./build.sh -d jessie -u vptech
+./build.sh -d bullseye -u vptech
 ```
 
-Build your own Debian image (eg. stretch) and push it on the Docker Hub.
+Build your own Debian image (eg. buster) and push it on the Docker Hub.
 
 ```bash
-./build.sh -d stretch -u vptech -p
+./build.sh -d buster -u vptech -p
 ```
 
 Build your own Debian image (eg. buster) with systemd and vim.
 
 ```bash
-./build.sh -d buster -e "systemd vim" -T "systemd"
+./build.sh -d bullseye -e "systemd vim" -T "systemd"
 ```
 
 ## Limitations

@@ -1,2 +1,2 @@
-deb http://mirror.vptech.eu/debian-archive/debian lenny main contrib non-free
-deb http://mirror.vptech.eu/debian-archive/debian-backports lenny-backports main contrib non-free
+deb http://mirror.veepee.tech/debian-archive/debian lenny main contrib non-free
+deb http://mirror.veepee.tech/debian-archive/debian-backports lenny-backports main contrib non-free
