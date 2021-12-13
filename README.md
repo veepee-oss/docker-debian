@@ -1,4 +1,4 @@
-# docker-debian
+# debian
 
 1. [Overview](#overview)
 1. [Description](#description)
@@ -33,7 +33,7 @@ Supported tags.
 - 8,  jessie
 - 9,  stretch
 - 10, buster, oldstable
-- 11, bullseye
+- 11, bullseye, stable, latest
 
 ### With systemd
 
