@@ -8,6 +8,9 @@ include:
     ref: 3.10.0
     file: gitlab-ci.yml
 
+variables:
+  SEMANTIC_CONFIG_FILE: changelog
+
 .template: &build
   stage: build
   image: docker.registry.vptech.eu/debian:bullseye
@@ -56,42 +59,42 @@ stages:
   - release
 
 # build
-v9.0:
+build:9:
   <<: *build
   script:
     - ./build.sh -d stretch -v
     - mkdir image
     - docker save debian:stretch > image/debian-v9.0.tar
 
-v9.0:systemd:
+build:9-systemd:
   <<: *build
   script:
     - ./build.sh -d stretch -e "systemd" -T "systemd" -v
     - mkdir image
     - docker save debian:stretch-systemd > image/debian-v9.0-systemd.tar
 
-v10.0:
+build:10:
   <<: *build
   script:
     - ./build.sh -d buster -v
     - mkdir image
     - docker save debian:buster > image/debian-v10.0.tar
 
-v10.0:systemd:
+build:10-systemd:
   <<: *build
   script:
     - ./build.sh -d buster -e "systemd" -T "systemd" -v
     - mkdir image
     - docker save debian:buster-systemd > image/debian-v10.0-systemd.tar
 
-v11.0:
+build:11:
   <<: *build
   script:
     - ./build.sh -d bullseye -v
     - mkdir image
     - docker save debian:bullseye > image/debian-v11.0.tar
 
-v11.0:systemd:
+build:11-systemd:
   <<: *build
   script:
     - ./build.sh -d bullseye -e "systemd" -T "systemd" -v
