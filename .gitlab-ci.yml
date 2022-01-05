@@ -2,10 +2,10 @@
 
 include:
   - project: veepee/vptech/sre/iac/ci-cd/markdown-lint
-    ref: 1.4.0
+    ref: latest
     file: gitlab-ci.yml
   - project: veepee/vptech/sre/iac/ci-cd/semantic-release
-    ref: 3.10.0
+    ref: latest
     file: gitlab-ci.yml
 
 variables:
