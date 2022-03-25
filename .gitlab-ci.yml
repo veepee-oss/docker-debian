@@ -5,11 +5,8 @@ include:
     ref: latest
     file: gitlab-ci.yml
   - project: veepee/vptech/sre/iac/ci-cd/semantic-release
-    ref: latest
+    ref: 4-latest
     file: gitlab-ci.yml
-
-variables:
-  SEMANTIC_CONFIG_FILE: changelog
 
 .template: &build
   stage: build
