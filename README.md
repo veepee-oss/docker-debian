@@ -1,14 +1,5 @@
 # debian
 
-1. [Overview](#overview)
-1. [Description](#description)
-1. [Tags](#tags)
-1. [Setup](#setup)
-1. [Usage](#usage)
-1. [Limitations](#limitations)
-1. [Development](#development)
-1. [Miscellaneous](#miscellaneous)
-
 ## Overview
 
 Debian is a  free operating system (OS) for your  computer. An operating system
@@ -27,18 +18,18 @@ all of our images are accurates.
 
 Supported tags.
 
-### Without systemd
+### without systemd
 
 - 7,  wheezy
 - 8,  jessie
 - 9,  stretch
-- 10, buster, oldstable
+- 10, buster,   oldstable
 - 11, bullseye, stable, latest
 
-### With systemd
+### with systemd
 
-- 9-systemd, stretch-systemd,
-- 8-systemd, jessie-systemd
+- 9-systemd,  stretch-systemd
+- 8-systemd,  jessie-systemd
 - 10-systemd, buster-systemd
 - 11-systemd, bullseye-systemd
 
@@ -112,12 +103,11 @@ Only work on Debian, Devuan and Ubuntu.
 
 ## Development
 
-Please read carefully [CONTRIBUTING.md](CONTRIBUTING.md) before making a merge
-request.
+Please read carefully [CONTRIBUTING.md](CONTRIBUTING.md) before making a merge request.
 
 ## Miscellaneous
 
-```
+```text
     ╚⊙ ⊙╝
   ╚═(███)═╝
  ╚═(███)═╝
