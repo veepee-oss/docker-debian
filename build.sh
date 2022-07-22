@@ -11,7 +11,7 @@ arch='amd64'
 oldstable='buster'
 stable='bullseye'
 testing='bookworm'
-version='4.5'
+version='4.6'
 
 function usage()
 {
@@ -27,7 +27,7 @@ OPTIONS:
    -h, --help           Show help
 
    -d, --dist           Choose Debian distribution
-                        eg: lenny, squeeze, wheezy, jessie, stretch, buster, bullseye
+                        eg: lenny, squeeze, wheezy, jessie, stretch, buster, bullseye, bookworm
 
    -e, --extra-packages space separated list of extra packages
                         eg: -e foo bar baz
@@ -263,7 +263,7 @@ EOF
     then
         ${sudo} rm "${image}.tar"
     fi
-    ${sudo} tar -C "${image}" -c -f "${image}.tar" --numeric-owner .
+    ${sudo} tar --verbose --directory="${image}" --exclude='./proc' --create --file="${image}.tar" --numeric-owner .
 }
 
 # create images from bootstrap archive
@@ -417,6 +417,12 @@ then
         bullseye|11|11.0)
             distname='bullseye'
             distid='11'
+            mirror='http://mirror.veepee.tech/debian'
+            include="gnupg2 ${extra}"
+            ;;
+        bookworm|12|12.0)
+            distname='bookworm'
+            distid='12'
             mirror='http://mirror.veepee.tech/debian'
             include="gnupg2 ${extra}"
             ;;

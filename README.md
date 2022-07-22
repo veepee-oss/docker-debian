@@ -25,6 +25,7 @@ Supported tags.
 - 9,  stretch
 - 10, buster,   oldstable
 - 11, bullseye, stable, latest
+- 12, bookworm
 
 ### with systemd
 
@@ -32,6 +33,7 @@ Supported tags.
 - 8-systemd,  jessie-systemd
 - 10-systemd, buster-systemd
 - 11-systemd, bullseye-systemd
+- 12-systemd, bookworm-systemd
 
 ## Setup
 
