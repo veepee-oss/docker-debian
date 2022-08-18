@@ -220,7 +220,7 @@ EOF
 
 find /usr/share/doc     -type f ! -name copyright -delete
 find /usr/share/i18n    -type f ! -name en_US ! -name UTF-8.gz -delete
-find /usr/share/locale  -type f -delete
+find /usr/share/locale  -type f -not -path "/usr/share/locale/en_GB/*" -delete
 find /usr/share/man     -type f -delete
 find /var/cache/apt     -type f -delete
 find /var/lib/apt/lists -type f -delete
