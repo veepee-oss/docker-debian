@@ -1,3 +1,10 @@
+## [1.2.1](https://git.vptech.eu/veepee/vptech/container-images/debian/compare/1.2.0...1.2.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* **locales:** don't remove en_US/en_GB locales (can break services like patroni) ([1908eff](https://git.vptech.eu/veepee/vptech/container-images/debian/commit/1908effa2707daa6abdb723078ac236e1f45e294))
+
 # [1.2.0](https://git.vptech.eu/veepee/vptech/container-images/debian/compare/1.1.2...1.2.0) (2022-07-22)
 
 
