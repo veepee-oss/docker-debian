@@ -1,2 +1,4 @@
-deb http://deb.debian.org/debian sid main contrib non-free
-deb-src http://deb.debian.org/debian sid main contrib non-free
+deb http://mirror.veepee.tech/debian bookworm main contrib non-free
+deb http://mirror.veepee.tech/debian bookworm-updates main contrib non-free
+deb http://mirror.veepee.tech/debian bookworm-backports main contrib non-free
+deb http://mirror.veepee.tech/debian-security bookworm-security main
