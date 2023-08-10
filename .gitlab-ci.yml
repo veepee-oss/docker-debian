@@ -38,7 +38,7 @@ include:
   stage: deploy
   image: docker.registry.vptech.eu/docker:23
   before_script:
-    - DOCKER_HOST="index.docker.io" docker login -u "$DOCKER_PUBLIC_REGISTRY_USERNAME" -p "$DOCKER_PUBLIC_REGISTRY_PASSWORD"
+    - docker login -u "$DOCKER_PUBLIC_REGISTRY_USERNAME" -p "$DOCKER_PUBLIC_REGISTRY_PASSWORD"
     - docker load -i image/debian-v10.0.tar
     - docker load -i image/debian-v10.0-systemd.tar
     - docker load -i image/debian-v11.0.tar
