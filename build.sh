@@ -8,10 +8,10 @@ set -e
 PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 arch='amd64'
-oldstable='buster'
-stable='bullseye'
-testing='bookworm'
-version='4.6'
+oldstable='bullseye'
+stable='bookworm'
+testing='trixie'
+version='4.7'
 
 function usage()
 {
@@ -27,7 +27,7 @@ OPTIONS:
    -h, --help           Show help
 
    -d, --dist           Choose Debian distribution
-                        eg: lenny, squeeze, wheezy, jessie, stretch, buster, bullseye, bookworm
+                        eg: lenny, squeeze, wheezy, jessie, stretch, buster, bullseye, bookworm, trixie
 
    -e, --extra-packages space separated list of extra packages
                         eg: -e foo bar baz
@@ -47,7 +47,7 @@ OPTIONS:
                         default: no
 
    -l, --latest         Force the "latest"
-                        default: bullseye
+                        default: bookworm
 
    -v, --verbose        Verbose mode
 
@@ -423,6 +423,12 @@ then
         bookworm|12|12.0)
             distname='bookworm'
             distid='12'
+            mirror='http://mirror.veepee.tech/debian'
+            include="gnupg2 ${extra}"
+            ;;
+        trixie|13|13.0)
+            distname='trixie'
+            distid='13'
             mirror='http://mirror.veepee.tech/debian'
             include="gnupg2 ${extra}"
             ;;

@@ -1,6 +1,9 @@
 ---
 
 include:
+  - project: veepee/vptech/ci-cd/gitlab-workflow
+    ref: 1-latest
+    file: gitlab-ci.yml
   - project: veepee/vptech/ci-cd/markdown-lint
     ref: 1-latest
     file: gitlab-ci.yml
@@ -8,7 +11,7 @@ include:
     ref: 2-latest
     file: gitlab-ci.yml
   - project: veepee/vptech/ci-cd/shellcheck
-    ref: 2.0.1
+    ref: 2-latest
     file: gitlab-ci.yml
 
 .template: &build
@@ -33,7 +36,7 @@ include:
 
 .template: &deploy
   stage: deploy
-  image: docker.registry.vptech.eu/docker:20
+  image: docker.registry.vptech.eu/docker:23
   before_script:
     - DOCKER_HOST="index.docker.io" docker login -u "$DOCKER_PUBLIC_REGISTRY_USERNAME" -p "$DOCKER_PUBLIC_REGISTRY_PASSWORD"
     - docker load -i image/debian-v10.0.tar
@@ -42,11 +45,12 @@ include:
     - docker load -i image/debian-v11.0-systemd.tar
     - docker load -i image/debian-v12.0.tar
     - docker load -i image/debian-v12.0-systemd.tar
-  only:
-    - main
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - when: never
   services:
-    - name: docker.registry.vptech.eu/docker:20-dind
+    - name: docker.registry.vptech.eu/docker:23-dind
       alias: docker
   tags:
     - dind
@@ -117,8 +121,8 @@ vptech:
     - docker tag debian:bookworm-systemd vptech/debian:12-systemd
     - docker tag debian:bookworm         vptech/debian:bookworm
     - docker tag debian:bookworm-systemd vptech/debian:bookworm-systemd
-    - docker tag debian:buster           vptech/debian:oldstable
-    - docker tag debian:bullseye         vptech/debian:stable
-    - docker tag debian:bullseye         vptech/debian:latest
+    - docker tag debian:bullseye         vptech/debian:oldstable
+    - docker tag debian:bookworm         vptech/debian:stable
+    - docker tag debian:bookworm         vptech/debian:latest
     - docker push --all-tags vptech/debian
 # EOF
