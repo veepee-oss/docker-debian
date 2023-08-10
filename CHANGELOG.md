@@ -1,3 +1,22 @@
+# [1.3.0](https://git.vptech.eu/veepee/vptech/container-images/debian/compare/1.2.1...1.3.0) (2023-08-10)
+
+
+### Bug Fixes
+
+* docker login ([6f38692](https://git.vptech.eu/veepee/vptech/container-images/debian/commit/6f38692ebb6cbddc732a42dabee1fb23f167908d))
+* use stable dind and connect to dockerhub ([920ccc8](https://git.vptech.eu/veepee/vptech/container-images/debian/commit/920ccc8b9372b42b74acececcfba26ecd257a37d))
+* wrong sources for bookworm image ([86c07a8](https://git.vptech.eu/veepee/vptech/container-images/debian/commit/86c07a8a6227b416e04e7e4ddac906026d519d0c))
+
+
+### Chores
+
+* **deps:** update dependency veepee/vptech/ci-cd/shellcheck to v2 ([fdac2ec](https://git.vptech.eu/veepee/vptech/container-images/debian/commit/fdac2eca96b19c228534ad71ef4d9c1d97c98bb0))
+
+
+### Features
+
+* debian 12 ([53c4e0d](https://git.vptech.eu/veepee/vptech/container-images/debian/commit/53c4e0d4f55e2da31dd05ccc59307a1069dfa4af))
+
 ## [1.2.1](https://git.vptech.eu/veepee/vptech/container-images/debian/compare/1.2.0...1.2.1) (2022-08-18)
 
 
