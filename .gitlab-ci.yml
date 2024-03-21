@@ -36,7 +36,7 @@ include:
 
 .template: &deploy
   stage: deploy
-  image: docker.registry.vptech.eu/docker:24
+  image: docker.registry.vptech.eu/docker:26
   before_script:
     - docker login -u "$DOCKER_PUBLIC_REGISTRY_USERNAME" -p "$DOCKER_PUBLIC_REGISTRY_PASSWORD"
     - docker load -i image/debian-v10.0.tar
@@ -50,7 +50,7 @@ include:
       when: always
     - when: never
   services:
-    - name: docker.registry.vptech.eu/docker:24-dind
+    - name: docker.registry.vptech.eu/docker:26-dind
       alias: docker
   tags:
     - dind
