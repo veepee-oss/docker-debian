@@ -1,3 +1,4 @@
-deb http://mirror.veepee.tech/debian-archive/debian wheezy main contrib non-free
-deb http://mirror.veepee.tech/debian-archive/debian wheezy-backports main contrib non-free
-deb http://mirror.veepee.tech/debian-security wheezy/updates main contrib non-free
+# Debian 7
+deb http://mirror.vptech.eu/debian-archive/debian wheezy main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian wheezy-backports main contrib non-free
+deb http://mirror.vptech.eu/debian-security wheezy/updates main contrib non-free

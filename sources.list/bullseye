@@ -1,4 +1,5 @@
-deb http://mirror.veepee.tech/debian bullseye main contrib non-free
-deb http://mirror.veepee.tech/debian bullseye-updates main contrib non-free
-deb http://mirror.veepee.tech/debian bullseye-backports main contrib non-free
-deb http://mirror.veepee.tech/debian-security bullseye-security main
+# Debian 11
+deb http://mirror.vptech.eu/debian bullseye main contrib non-free
+deb http://mirror.vptech.eu/debian bullseye-updates main contrib non-free
+deb http://mirror.vptech.eu/debian bullseye-backports main contrib non-free
+deb http://mirror.vptech.eu/debian-security bullseye-security main contrib non-free

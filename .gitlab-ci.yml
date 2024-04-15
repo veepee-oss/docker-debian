@@ -39,8 +39,6 @@ include:
   image: docker.registry.vptech.eu/docker:26
   before_script:
     - docker login -u "$DOCKER_PUBLIC_REGISTRY_USERNAME" -p "$DOCKER_PUBLIC_REGISTRY_PASSWORD"
-    - docker load -i image/debian-v10.0.tar
-    - docker load -i image/debian-v10.0-systemd.tar
     - docker load -i image/debian-v11.0.tar
     - docker load -i image/debian-v11.0-systemd.tar
     - docker load -i image/debian-v12.0.tar
@@ -62,20 +60,6 @@ stages:
   - build
   - deploy
   - release
-
-build:10:
-  <<: *build
-  script:
-    - ./build.sh -d buster -v
-    - mkdir image
-    - docker save debian:buster > image/debian-v10.0.tar
-
-build:10-systemd:
-  <<: *build
-  script:
-    - ./build.sh -d buster -e "systemd" -T "systemd" -v
-    - mkdir image
-    - docker save debian:buster-systemd > image/debian-v10.0-systemd.tar
 
 build:11:
   <<: *build
@@ -109,10 +93,6 @@ build:12-systemd:
 vptech:
   <<: *deploy
   script:
-    - docker tag debian:buster           vptech/debian:10
-    - docker tag debian:buster-systemd   vptech/debian:10-systemd
-    - docker tag debian:buster           vptech/debian:buster
-    - docker tag debian:buster-systemd   vptech/debian:buster-systemd
     - docker tag debian:bullseye         vptech/debian:11
     - docker tag debian:bullseye-systemd vptech/debian:11-systemd
     - docker tag debian:bullseye         vptech/debian:bullseye
