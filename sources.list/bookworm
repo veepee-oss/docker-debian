@@ -1,4 +1,5 @@
-deb http://mirror.veepee.tech/debian bookworm main contrib non-free
-deb http://mirror.veepee.tech/debian bookworm-updates main contrib non-free
-deb http://mirror.veepee.tech/debian bookworm-backports main contrib non-free
-deb http://mirror.veepee.tech/debian-security bookworm-security main
+# Debian 12
+deb http://mirror.vptech.eu/debian bookworm main contrib non-free non-free-firmware
+deb http://mirror.vptech.eu/debian bookworm-updates main contrib non-free non-free-firmware
+deb http://mirror.vptech.eu/debian bookworm-backports main contrib non-free non-free-firmware
+deb http://mirror.vptech.eu/debian-security bookworm-security main contrib non-free non-free-firmware

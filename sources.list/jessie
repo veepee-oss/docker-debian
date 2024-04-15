@@ -1,3 +1,4 @@
-deb http://mirror.veepee.tech/debian-archive/debian jessie main contrib non-free
-deb http://mirror.veepee.tech/debian-archive/debian jessie-backports main contrib non-free
-deb http://mirror.veepee.tech/debian-security jessie/updates main contrib non-free
+# Debian 8
+deb http://mirror.vptech.eu/debian-archive/debian jessie main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian jessie-backports main contrib non-free
+deb http://mirror.vptech.eu/debian-security jessie/updates main contrib non-free
