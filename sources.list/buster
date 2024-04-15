@@ -1,4 +1,3 @@
 deb http://mirror.veepee.tech/debian buster main contrib non-free
 deb http://mirror.veepee.tech/debian buster-updates main contrib non-free
-deb http://mirror.veepee.tech/debian buster-backports main contrib non-free
 deb http://mirror.veepee.tech/debian-security buster/updates main contrib non-free
