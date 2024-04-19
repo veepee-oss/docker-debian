@@ -1,5 +1,5 @@
 # Debian 10
-deb http://mirror.vptech.eu/debian buster main contrib non-free
-deb http://mirror.vptech.eu/debian buster-updates main contrib non-free
-# deb http://mirror.vptech.eu/debian buster-backports main contrib non-free
-deb http://mirror.vptech.eu/debian-security buster-security main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian buster main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian buster-backports main contrib non-free
+deb http://mirror.vptech.eu/debian-archive/debian buster-updates main contrib non-free
+deb http://mirror.vptech.eu/debian-security buster/updates main contrib non-free
